@@ -1,0 +1,53 @@
+<div >
+    <table  >
+      <thead>
+      <tr>
+        <th style="text-align:left">
+          Statistic
+        </th>
+        <th style="text-align:left">
+          Temporary
+        </th>
+        <th style="text-align:left">
+          Potential
+        </th>
+        <th style="text-align:left">
+          Racial
+        </th>
+        <th style="text-align:left">
+          Bonus
+        </th>
+        <th style="text-align:left">
+          Total
+        </th>
+        <th style="text-align:left">
+          Development
+        </th>
+      </tr></thead>
+      {{#each actor.data.character.stats}}
+        <tr>
+          <td>
+            {{this.statisticName}}
+          </td>
+          <td>
+            {{this.roll}}
+          </td>
+          <td>
+            {{this.potential}}
+          </td>
+          <td>
+            {{this.racial}}
+          </td>
+          <td>
+            {{this.bonus}}
+          </td>
+          <td>
+            {{this.total}}
+          </td>
+          <td>
+            {{this.developmentPoints}}
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>

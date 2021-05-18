@@ -1,0 +1,187 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "base": {
+        "rmceId": "",
+        "character": {
+          "name": "New Name",
+          "Campaign": "Unknown",
+          "WorldId": "716b7533-a09a-42e0-92fc-dfaf533d953a",
+          "Age": 20,
+          "Apperance": 50,
+          "ClassId": "",
+          "ClassName": "Unknown",
+          "Experience": 0,
+          "Description": null,
+          "EyeColor": null,
+          "Gender": "M",
+          "HairColor": null,
+          "Height": null,
+          "Hits1": 83,
+          "Level": 4,
+          "Move": 50,
+          "Name": "Hans",
+          "PowerPointMultiplier": 0,
+          "PrimaryDevelopment": 0.5,
+          "SocialStatus": 0,
+          "Weight": 0,
+          "Stats": [
+            {
+              "Potential": 84,
+              "Racial": 0,
+              "Roll": 83,
+              "Abbreviation": "ME",
+              "StatisticName": "Memory",
+              "Development": true,
+              "DevelopmentPoints": 7.7,
+              "PowerPoints": 1.2,
+              "Bonus": 7,
+              "Order": 9,
+              "Total": 7
+            },
+            {
+              "Potential": 86,
+              "Racial": 30,
+              "Roll": 86,
+              "Abbreviation": "CO",
+              "StatisticName": "Constitution",
+              "Development": true,
+              "DevelopmentPoints": 8,
+              "PowerPoints": 1.3,
+              "Bonus": 8,
+              "Order": 6,
+              "Total": 38
+            },
+            {
+              "Potential": 93,
+              "Racial": 15,
+              "Roll": 93,
+              "Abbreviation": "AG",
+              "StatisticName": "Agility",
+              "Development": true,
+              "DevelopmentPoints": 8.8,
+              "PowerPoints": 1.8,
+              "Bonus": 13,
+              "Order": 7,
+              "Total": 28
+            },
+            {
+              "Potential": 74,
+              "Racial": 0,
+              "Roll": 74,
+              "Abbreviation": "RE",
+              "StatisticName": "Reasoning",
+              "Development": true,
+              "DevelopmentPoints": 6.8,
+              "PowerPoints": 0.8,
+              "Bonus": 4,
+              "Order": 10,
+              "Total": 4
+            },
+            {
+              "Potential": 50,
+              "Racial": -10,
+              "Roll": 50,
+              "Name": null,
+              "Abbreviation": "EM",
+              "StatisticName": "Empathy",
+              "Development": false,
+              "DevelopmentPoints": 5.5,
+              "PowerPoints": 0,
+              "Bonus": 0,
+              "Order": 5,
+              "Total": -10
+            },
+            {
+              "Potential": 90,
+              "Racial": 20,
+              "Roll": 90,
+              "Abbreviation": "ST",
+              "StatisticName": "Strength",
+              "Development": false,
+              "DevelopmentPoints": 8.4,
+              "PowerPoints": 1.5,
+              "Bonus": 10,
+              "Order": 1,
+              "Total": 30
+            },
+            {
+              "Potential": 89,
+              "Racial": 5,
+              "Roll": 89,
+              "Abbreviation": "SD",
+              "StatisticName": "Self Discipline",
+              "Development": true,
+              "DevelopmentPoints": 8.2,
+              "PowerPoints": 1.4,
+              "Bonus": 9,
+              "Order": 8,
+              "Total": 14
+            },
+            {
+              "Potential": 100,
+              "Racial": 0,
+              "Roll": 100,
+              "Abbreviation": "IN",
+
+              "StatisticName": "Intuition",
+              "Development": false,
+              "DevelopmentPoints": 10,
+              "PowerPoints": 3,
+              "Bonus": 25,
+              "Order": 4,
+              "Total": 25
+            },
+            {
+              "Potential": 95,
+              "Racial": 15,
+              "Roll": 95,
+              "Abbreviation": "QU",
+              "StatisticName": "Quickness",
+              "Development": false,
+              "DevelopmentPoints": 9,
+              "PowerPoints": 2,
+              "Bonus": 15,
+              "Order": 2,
+              "Total": 30
+            },
+            {
+              "Potential": 81,
+              "Racial": -10,
+              "Roll": 81,
+
+              "Abbreviation": "PR",
+
+              "StatisticName": "Presence",
+              "Development": false,
+              "DevelopmentPoints": 7.7,
+              "PowerPoints": 1.2,
+              "Bonus": 7,
+              "Order": 3,
+              "Total": -3
+            }
+          ]
+        }
+      }
+    },
+    "character": {
+      "templates": ["base"]
+    },
+    "npc": {
+      "templates": ["base"]
+    }
+  },
+  "Item": {
+    "types": ["weapon", "armor"],
+    "templates": {},
+    "weapon": {
+      "dammage": 0,
+      "hands": "one-handed"
+    },
+    "armor": {
+      "reduction:": 0,
+      "class": "light"
+    }
+  }
+}
