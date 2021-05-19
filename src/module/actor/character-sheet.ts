@@ -1,8 +1,7 @@
-import { copyTextAreaToClipBoard } from "../../services/general";
+import { copyTextAreaToClipBoard } from '../../services/general';
 
 export class RolemasterCharacterSheet extends ActorSheet {
-
-  static get defaultOptions() {
+  static get defaultOptions(): any {
     return {
       ...super.defaultOptions,
       template: 'systems/rolemaster/templates/sheets/character-sheet.hbs',
@@ -18,7 +17,7 @@ export class RolemasterCharacterSheet extends ActorSheet {
     };
   }
 
-  activateListeners(html: JQuery):void {
+  activateListeners(html: JQuery): void {
     super.activateListeners(html);
 
     html.find('.rollable').click(this._onRoll.bind(this));
@@ -45,38 +44,30 @@ export class RolemasterCharacterSheet extends ActorSheet {
     // });
   }
 
-  _onRoll(event:any) {
+  _onRoll(event: any) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
 
-
     if (dataset.roll) {
-      let roll = new Roll(dataset.roll, this.actor.data.data);
-      let label = dataset.label ? `Rolling ${dataset.label}` : '';
+      const roll = new Roll(dataset.roll, this.actor.data.data);
+      const label = dataset.label ? `Rolling ${dataset.label}` : '';
 
       roll.roll().toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: label
+        flavor: label,
       });
     }
   }
 
-  _onCopy(event:any) {
+  _onCopy(event: any) {
     event.preventDefault();
     const element = event.currentTarget;
     const dataset = element.dataset;
 
-
     if (dataset.roll) {
-
-      let label = dataset.label ? `Rolling ${dataset.label}` : '';
+      const label = dataset.label ? `Rolling ${dataset.label}` : '';
       copyTextAreaToClipBoard('/r ' + dataset.roll + '#' + label);
-
     }
   }
-
-
 }
-
-

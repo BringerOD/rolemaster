@@ -24,13 +24,13 @@ export class BaseActor extends Actor<SysActorData, SystemItem> {
     console.log(this.data.data.pcOnlyField);
   }
 
-  async prepareData() {
+  async prepareData(): Promise<void> {
     super.prepareData();
 
     this.options;
     const actorData = this.data;
-    const data = actorData.data;
-    const flags = actorData.flags;
+    // const data = actorData.data;
+    // const flags = actorData.flags;
 
     const apiClient = new RMCEApiClient();
 
@@ -183,7 +183,7 @@ export class BaseActor extends Actor<SysActorData, SystemItem> {
     }
   }
   private _fillSkillList(skill: CharacterDevelopmentResult[]): CharacterDevelopment[] {
-    let list = [] as CharacterDevelopment[];
+    const list = [] as CharacterDevelopment[];
 
     for (const item of skill) {
       const newItem = {} as CharacterDevelopment;

@@ -25,7 +25,6 @@ export class CharacterData {
   topSkills: CharacterDevelopment[] | undefined;
   spells: CharacterSpellList[] | undefined;
   languages: CharacterLanguage[] | undefined;
-
 }
 
 export class CharacterStat {
@@ -42,13 +41,13 @@ export class CharacterStat {
   total?: number | undefined;
 }
 
-export class CharacterLanguage{
+export class CharacterLanguage {
   language?: string | undefined;
   read!: number;
   speak!: number;
 }
 
-export class CharacterSpellList{
+export class CharacterSpellList {
   beginLevel?: number | undefined;
   current?: boolean | undefined;
   endLevel?: number | undefined;
@@ -66,7 +65,7 @@ export class CharacterMovement {
   feet010?: string | undefined;
 }
 
-export class CharacterDevelopment  {
+export class CharacterDevelopment {
   bonus!: number;
   expandable!: boolean;
   experienceCheck!: boolean;
