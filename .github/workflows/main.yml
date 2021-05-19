@@ -42,7 +42,7 @@ jobs:
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: './rm-release.zip, ./src/system.json'
+          artifacts: './dist/rm-release.zip, ./src/system.json'
           tag: ${{ steps.get-version.outputs.version }}
 
 
