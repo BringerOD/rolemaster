@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["character", "npc", "other"],
     "templates": {
       "base": {
         "rmceId": "",
@@ -18,6 +18,7 @@
           "Gender": "M",
           "HairColor": null,
           "Height": null,
+
           "Hits1": 83,
           "Level": 4,
           "Move": 50,
@@ -26,6 +27,7 @@
           "PrimaryDevelopment": 0.5,
           "SocialStatus": 0,
           "Weight": 0,
+          "RaceName": "Unknown",
           "Stats": [
             {
               "Potential": 84,
@@ -124,7 +126,8 @@
     },
     "npc": {
       "templates": ["base"]
-    }
+    },
+    "other": {}
   },
   "Item": {
     "types": ["weapon", "armor"],

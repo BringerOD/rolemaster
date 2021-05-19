@@ -94,6 +94,12 @@ export class BaseActor extends Actor<SysActorData, SystemItem> {
     actorData.data.character.hits1 = character.hits1;
     actorData.data.character.level = character.level;
     actorData.data.character.weight = character.weight;
+    actorData.data.character.height = character.height;
+    actorData.data.character.move = character.move;
+    actorData.data.character.raceName = character.raceName;
+    actorData.data.character.socialStatus = character.socialStatus;
+
+
   }
 
   private _updateLanguage(sourceList: CharacterLanguageResult[]) {
@@ -233,3 +239,4 @@ export class BaseActor extends Actor<SysActorData, SystemItem> {
     return list;
   }
 }
+

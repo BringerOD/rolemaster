@@ -29,6 +29,10 @@ Hooks.once('init', async () => {
     types: ['character', 'npc'],
   });
 
+  Actors.registerSheet('core', ActorSheet, {
+    types: ['other'],
+  });
+
   // Preload Handlebars templates
   await preloadTemplates();
 

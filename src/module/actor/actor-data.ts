@@ -18,6 +18,8 @@ export class CharacterData {
   name?: string | undefined;
   raceName?: string | undefined;
   weight!: number;
+  move!: number;
+  socialStatus!: number;
   movement: CharacterMovement[] | undefined;
   stats: CharacterStat[] | undefined;
   primarySkills: CharacterDevelopment[] | undefined;

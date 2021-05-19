@@ -66,8 +66,8 @@ export class RolemasterCharacterSheet extends ActorSheet {
     const dataset = element.dataset;
 
     if (dataset.roll) {
-      const label = dataset.label ? `Rolling ${dataset.label}` : '';
-      copyTextAreaToClipBoard('/r ' + dataset.roll + '#' + label);
+      const label = dataset.label ? `${this.actor._data.name} is rolling ${dataset.label}` : '';
+      copyTextAreaToClipBoard('/r ' + dataset.roll + ' # ' + label);
     }
   }
 }
