@@ -22,7 +22,7 @@ jobs:
 
       - name: Create Release
         id: create-reelase
-        uses: ncipollo/release-actions@v1
+        uses: ncipollo/release-actions@v1.0.0
         with:
           allowUpdates: true
           name: Release ${{ steps.get-version.outputs.version }}
