@@ -1,9 +1,9 @@
 {
   "name": "rolemaster",
   "title": "rolemaster",
-  "description": "",
-  "version": "0.0.1",
-  "author": "",
+  "description": "Rolemaster RMCE",
+  "version": "0.0.2",
+  "author": "BringerOD",
   "authors": [
     {
       "name": "BringerOD",
@@ -25,9 +25,9 @@
     }
   ],
   "socket": false,
-  "url": "",
-  "manifest": "",
-  "download": "https://host/path/to/0.0.0.zip",
+  "url": "https://github.com/BringerOD/rolemaster",
+  "manifest": "https://github.com/BringerOD/rolemaster/releases/download/0.0.2/system.json",
+  "download": "https://github.com/BringerOD/rolemaster/releases/download/0.0.2/rm-release.zip",
   "license": "",
   "readme": "",
   "bugs": "",
