@@ -25,7 +25,7 @@ jobs:
 
       - name: Zip Files
         working-directory: ./dist
-        run: zip -r ./rm-release.zip ./*
+        run: zip -r ../rm-release.zip ./*
 
       - name: Get Version
         shell: bash
@@ -42,7 +42,7 @@ jobs:
           draft: false
           prerelease: false
           token: ${{secrets.GITHUB_TOKEN}}
-          artifacts: './dist/rm-release.zip, ./src/system.json'
+          artifacts: './rm-release.zip, ./src/system.json'
           tag: ${{ steps.get-version.outputs.version }}
 
 
