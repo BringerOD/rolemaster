@@ -29,6 +29,7 @@ jobs:
 
       - name: Get Version
         shell: bash
+        working-directory: ./
         id: get-version
         run: echo "::set-output name=version::$(node ./.github/workflows/get-version.js)"
 
