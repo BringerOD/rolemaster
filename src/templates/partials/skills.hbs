@@ -1,0 +1,80 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align:left">
+          Category
+        </th>
+        <th style="text-align:left">
+          Cost
+        </th>
+        <th style="text-align:left">
+          Skill
+        </th>
+        <th style="text-align:left">
+          Stats
+        </th>
+        <th style="text-align:left">
+          Ranks
+        </th>
+        <th style="text-align:left">
+          SB
+        </th>
+        <th style="text-align:left">
+          LV
+        </th>
+        <th style="text-align:left">
+          STB
+        </th>
+        <th style="text-align:left">
+          RA
+        </th>
+        <th style="text-align:left">
+          BO
+        </th>
+
+      </tr>
+    </thead>
+    {{#each data}}
+    <tr>
+      <td>
+        {{this.category}}
+      </td>
+      <td>
+        {{this.cost}}
+      </td>
+      <td>
+        {{this.skillName}}
+      </td>
+      <td>
+        {{this.stats}}
+      </td>
+      <td>
+        {{this.ranks}}
+      </td>
+      <td>
+        {{this.statBonusTotal}}
+      </td>
+      <td>
+        {{this.levelBonusTotal}}
+
+      </td>
+      <td>
+        {{this.rankBonusTotal}}
+      </td>
+      <td>
+        {{this.bonus}}
+      </td>
+      <td>
+
+        <span class="rollable" data-roll="d100x>95+{{this.totalBonus}}" data-label="{{this.skillName}}">
+        {{this.totalBonus}}</span>
+
+        <span class="copytoclipboard" data-roll="d100x>95+{{this.totalBonus}}" data-label="{{this.skillName}}">
+        &nbsp;[C]</span>
+
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</div>

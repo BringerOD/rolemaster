@@ -1,0 +1,30 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align:left">
+          Name
+        </th>
+        <th style="text-align:left">
+          Start
+        </th>
+        <th style="text-align:left">
+          End
+        </th>
+      </tr>
+    </thead>
+    {{#each data}}
+    <tr>
+      <td>
+        {{this.spellListName}}
+      </td>
+      <td>
+        {{this.beginLevel}}
+      </td>
+      <td>
+        {{this.endLevel}}
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</div>

@@ -1,6 +1,21 @@
-import { CharacterResult, AnalyzeSimilarItem, CharacterStatResult } from './../../services/rmce_api';
+import {
+  CharacterResult,
+  CharacterStatResult,
+  CharacterDevelopmentResult,
+  CharacterSpellListResult,
+  CharacterMovementRateResult,
+  CharacterLanguageResult,
+} from './../../services/rmce_api';
 import { RMCEApiClient } from '../../services/rmce_api';
-import { SysActorData, CharacterData, CharacterStat } from './actor-data';
+import {
+  SysActorData,
+  CharacterData,
+  CharacterStat,
+  CharacterDevelopment,
+  CharacterSpellList,
+  CharacterMovement,
+  CharacterLanguage,
+} from './actor-data';
 import { SystemItem } from '../item/item';
 
 export class BaseActor extends Actor<SysActorData, SystemItem> {
@@ -26,18 +41,118 @@ export class BaseActor extends Actor<SysActorData, SystemItem> {
       ui.notifications?.notify(`${charData.result?.content?.name} returned.`);
 
       if (charData.result && charData.result.content) {
-        // Set character data.
-        actorData.data.character = new CharacterData();
-        actorData.data.characterResult = charData.result.content;
+        this._updateGeneral(charData.result.content); // Update General Information
 
-        // set stats
-        if (actorData.data.characterResult.stats) this._updateStats(actorData.data.characterResult.stats);
+        this._updateDevelopment(charData.result.content); // Update General Information
+
+        actorData.data.characterResult = charData.result.content;
 
         // set name
         if (charData.result.content?.name) {
           actorData.name = charData.result.content?.name;
         }
       }
+    }
+  }
+
+  private _updateDevelopment(character: CharacterResult) {
+    const actorData = this.data;
+
+    if (!actorData.data.character) return;
+    if (!character.developmentData) return;
+    if (!character.primarySkills) return;
+    if (!character.secondarySkills) return;
+    if (!character.topStats) return;
+
+    if (character.stats) this._updateStats(character.stats); // set stats
+
+    if (character.spellLists) this._updateSpells(character.spellLists); // set spellLists
+
+    if (character.movementRates) this._updateMovement(character.movementRates); // set movementRates
+
+    if (character.languages) this._updateLanguage(character.languages); // set languages
+
+    actorData.data.character.primarySkills = this._fillSkillList(character.primarySkills);
+    actorData.data.character.secondarySkills = this._fillSkillList(character.secondarySkills);
+    actorData.data.character.topSkills = this._fillSkillList(character.topStats);
+  }
+  private _updateGeneral(character: CharacterResult) {
+    const actorData = this.data;
+
+    actorData.data.character = new CharacterData();
+    actorData.data.character.age = character.age;
+    actorData.data.character.name = character.name;
+    actorData.data.character.campaign = character.campaign;
+    actorData.data.character.worldId = character.worldId;
+    actorData.data.character.apperance = character.apperance;
+    actorData.data.character.className = character.className;
+    actorData.data.character.experience = character.experience;
+    actorData.data.character.description = character.description;
+    actorData.data.character.eyeColor = character.eyeColor;
+    actorData.data.character.gender = character.gender;
+    actorData.data.character.hairColor = character.hairColor;
+    actorData.data.character.hits1 = character.hits1;
+    actorData.data.character.level = character.level;
+    actorData.data.character.weight = character.weight;
+  }
+
+  private _updateLanguage(sourceList: CharacterLanguageResult[]) {
+    const actorData = this.data;
+
+    if (!actorData.data.character) return;
+
+    actorData.data.character.languages = [];
+
+    for (const item of sourceList) {
+      const newitem = {} as CharacterLanguage;
+
+      newitem.language = item.language;
+      newitem.read = item.read;
+      newitem.speak = item.speak;
+
+      actorData.data.character.languages.push(newitem);
+    }
+  }
+
+  private _updateMovement(sourceList: CharacterMovementRateResult[]) {
+    const actorData = this.data;
+
+    if (!actorData.data.character) return;
+
+    actorData.data.character.movement = [];
+
+    for (const item of sourceList) {
+      const newitem = {} as CharacterMovement;
+
+      newitem.base = item.base;
+      newitem.feet001 = item.feet001;
+      newitem.feet003 = item.feet003;
+      newitem.feet005 = item.feet005;
+      newitem.feet010 = item.feet010;
+      newitem.multiplier = item.multiplier;
+      newitem.rate = item.rate;
+
+      actorData.data.character.movement.push(newitem);
+    }
+  }
+
+  private _updateSpells(sourceList: CharacterSpellListResult[]) {
+    const actorData = this.data;
+
+    if (!actorData.data.character) return;
+
+    actorData.data.character.spells = [];
+
+    for (const item of sourceList) {
+      const newitem = {} as CharacterSpellList;
+
+      newitem.beginLevel = item.beginLevel;
+      newitem.endLevel = item.endLevel;
+      newitem.spellListName = item.spellListName;
+      newitem.spellListId = item.spellListId;
+      newitem.current = item.current;
+      newitem.next = item.next;
+      actorData.data.character.spells.push(newitem);
     }
   }
 
@@ -67,10 +182,54 @@ export class BaseActor extends Actor<SysActorData, SystemItem> {
       actorData.data.character.stats.push(newStat);
     }
   }
+  private _fillSkillList(skill: CharacterDevelopmentResult[]): CharacterDevelopment[] {
+    let list = [] as CharacterDevelopment[];
 
-  getArmorBonus(): number {
-    const armor = this.items.find((i) => i.data.type === 'armor');
-    if (armor === null || armor.data.type !== 'armor') return 0; // Second condition is to help typescript infer the type on armor.data
-    return armor.data.data.reduction;
+    for (const item of skill) {
+      const newItem = {} as CharacterDevelopment;
+
+      newItem.expandable = item.expandable;
+      newItem.experienceCheck = item.experienceCheck;
+      newItem.experienceCheckTwo = item.experienceCheck;
+      newItem.firstRank = item.firstRank;
+      newItem.primary = item.primary;
+      newItem.ranks = item.ranks;
+      newItem.ranksAdded = item.ranksAdded;
+      newItem.secondRank = item.secondRank;
+      newItem.skillId = item.skillId;
+      newItem.singleRank = item.singleRank;
+      newItem.doesNotDegrade = item.doesNotDegrade;
+      newItem.sortOrder = item.sortOrder;
+
+      newItem.categoryId = item.categoryId;
+      newItem.category = item.category;
+      newItem.skillName = item.skillName;
+      newItem.skillDescription = item.skillDescription;
+      newItem.firstStatId = item.firstStatId;
+      newItem.secondStatId = item.secondStatId;
+      newItem.thirdStatId = item.thirdStatId;
+      newItem.firstStatName = item.firstStatName;
+      newItem.cost = item.cost;
+      newItem.stats = item.stats;
+      newItem.thirdStatName = item.thirdStatName;
+      newItem.secondStatName = item.secondStatName;
+      newItem.firstStatAbbreviation = item.firstStatAbbreviation;
+      newItem.secondStatAbbreviation = item.secondStatAbbreviation;
+      newItem.thirdStatAbbreviation = item.thirdStatAbbreviation;
+
+      newItem.similiarRanks = item.similiarRanks;
+      newItem.similiarReasoning = item.similiarReasoning;
+      newItem.similiarRanksUsed = item.similiarRanksUsed;
+
+      newItem.levelBonus = parseFloat(item.levelBonus.toFixed());
+      newItem.rankBonusTotal = parseFloat(item.rankBonusTotal.toFixed());
+      newItem.levelBonusTotal = parseFloat(item.levelBonusTotal.toFixed());
+      newItem.statBonusTotal = parseFloat(item.statBonusTotal.toFixed());
+      newItem.bonus = parseFloat(item.bonus.toFixed());
+      newItem.totalBonus = parseFloat(item.totalBonus.toFixed());
+
+      list.push(newItem);
+    }
+    return list;
   }
 }

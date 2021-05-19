@@ -1,0 +1,30 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align:left">
+          Name
+        </th>
+        <th style="text-align:left">
+          Read
+        </th>
+        <th style="text-align:left">
+          Speak
+        </th>
+      </tr>
+    </thead>
+    {{#each data}}
+    <tr>
+      <td>
+        {{this.language}}
+      </td>
+      <td>
+        {{this.read}}
+      </td>
+      <td>
+        {{this.speak}}
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</div>

@@ -1,29 +1,6 @@
-export class RolemasterCharacterSheet extends ActorSheet {
-  // static get defaultOptions() {
-  //   return mergeObject(super.defaultOptions, {
-  //     classes: ["rolemaster"],
-  //     template: "systems/rolemaster/templates/sheets/skill-sheet.hbs",
-  //     width: 600,
-  //     height: 600,
-  //      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
-  //   });
-  // }
+import { copyTextAreaToClipBoard } from "../../services/general";
 
-  // static get defaultOptions() {
-  //   return {
-  //     ...super.defaultOptions,
-  //     id: SWADE.diceConfig.id,
-  //     title: SWADE.diceConfig.title,
-  //     template: 'systems/swade/templates/dice-config.html',
-  //     classes: ['swade', 'dice-config', 'dice-so-nice'],
-  //     width: 500,
-  //     height: 'auto' as const,
-  //     resizable: false,
-  //     closeOnSubmit: false,
-  //     submitOnClose: true,
-  //     submitOnChange: true,
-  //   };
-  // }
+export class RolemasterCharacterSheet extends ActorSheet {
 
   static get defaultOptions() {
     return {
@@ -31,7 +8,7 @@ export class RolemasterCharacterSheet extends ActorSheet {
       template: 'systems/rolemaster/templates/sheets/character-sheet.hbs',
       classes: ['rolemaster'],
       title: 'Rolemaster Character Sheet',
-      width: 800,
+      width: 900,
       height: 900,
       resizable: true,
       closeOnSubmit: false,
@@ -41,14 +18,65 @@ export class RolemasterCharacterSheet extends ActorSheet {
     };
   }
 
-  // get template() {
-  //   const path = "systems/rolemaster/templates/sheets/";
-  //   // Return a single sheet for all item types.
-  //   return `${path}/character-sheet.hbs`;
-  //   // Alternatively, you could use the following return statement to do a
-  //   // unique item sheet by type, like `weapon-sheet.html` -->.
+  activateListeners(html: JQuery):void {
+    super.activateListeners(html);
 
-  //   // return `${path}/${this.item.data.type}-sheet.html`;
+    html.find('.rollable').click(this._onRoll.bind(this));
+    html.find('.copytoclipboard').click(this._onCopy.bind(this));
 
-  // }
+    // // Everything below here is only needed if the sheet is editable
+    // if (!this.options.editable) return;
+
+    // // Add Inventory Item
+    // html.find('.item-create').click(this._onItemCreate.bind(this));
+
+    // // Update Inventory Item
+    // html.find('.item-edit').click(ev => {
+    //   const li = $(ev.currentTarget).parents(".item");
+    //   const item = this.actor.getOwnedItem(li.data("itemId"));
+    //   item.sheet.render(true);
+    // });
+
+    // // Delete Inventory Item
+    // html.find('.item-delete').click(ev => {
+    //   const li = $(ev.currentTarget).parents(".item");
+    //   this.actor.deleteOwnedItem(li.data("itemId"));
+    //   li.slideUp(200, () => this.render(false));
+    // });
+  }
+
+  _onRoll(event:any) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+
+
+    if (dataset.roll) {
+      let roll = new Roll(dataset.roll, this.actor.data.data);
+      let label = dataset.label ? `Rolling ${dataset.label}` : '';
+
+      roll.roll().toMessage({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        flavor: label
+      });
+    }
+  }
+
+  _onCopy(event:any) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+
+
+    if (dataset.roll) {
+
+      let label = dataset.label ? `Rolling ${dataset.label}` : '';
+      copyTextAreaToClipBoard('/r ' + dataset.roll + '#' + label);
+
+    }
+  }
+
+
 }
+
+

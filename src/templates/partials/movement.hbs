@@ -1,0 +1,56 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align:left">
+          Rate
+        </th>
+        <th style="text-align:left">
+          Multiplier
+        </th>
+        <th style="text-align:left">
+          Base
+        </th>
+        <th style="text-align:left">
+          1ft
+        </th>
+        <th style="text-align:left">
+          3ft
+        </th>
+        <th style="text-align:left">
+          5ft
+        </th>
+        <th style="text-align:left">
+          10ft
+        </th>
+      </tr>
+    </thead>
+    {{#each data}}
+    <tr>
+      <td>
+        {{this.rate}}
+      </td>
+      <td>
+        {{this.multiplier}}
+      </td>
+      <td>
+        {{this.base}}
+      </td>
+      <td>
+        {{this.feet001}}
+      </td>
+
+      <td>
+        {{this.feet003}}
+      </td>
+
+      <td>
+        {{this.feet005}}
+      </td>
+      <td>
+        {{this.feet010}}
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</div>

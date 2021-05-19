@@ -1,53 +1,71 @@
-
 <form class="{{cssClass}} flexcol" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header box-border h-32 w-32 p-4 border-4">
-        {{!-- Header stuff goes here --}}
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-        <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-            <div class="resources grid grid-2col">{{!-- resources here --}}</div>
-            <div class="abilities grid grid-3col">{{!-- abilities here --}}</div>
-        </div>
-    </header>
+  {{!-- Sheet Header --}}
+  <header class="sheet-header">
+    {{!-- Header stuff goes here --}}
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100" />
 
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-    <a class="item" data-tab="default">Stats</a>
-    <a class="item" data-tab="primaryskills">Primary Skills</a>
-    <a class="item" data-tab="secondaryskills">Secondary Skills</a>
+    <div class="header-fields">
+      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
+    </div>
+  </header>
+
+  {{!-- Sheet Tab Navigation --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="default">Main</a>
+    <a class="item" data-tab="primaryskills">Primary</a>
+    <a class="item" data-tab="secondaryskills">Secondary</a>
+    <a class="item" data-tab="topskills">Top</a>
+    <a class="item" data-tab="spells">Spells</a>
+    <a class="item" data-tab="languages">Languages</a>
     <a class="item" data-tab="settings">Settings</a>
-    </nav>
+  </nav>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-         <div class="tab items" data-group="primary" data-tab="default">
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
 
-      {{> "systems/rolemaster/templates/partials/stats.hbs" data=data}}
+
+    <div class="tab items" data-group="primary" data-tab="default">
+      {{> "systems/rolemaster/templates/partials/general.hbs" data=data}}
+      <hr>
+      {{> "systems/rolemaster/templates/partials/stats.hbs" data=data.character.stats}}
+      <hr>
+      {{> "systems/rolemaster/templates/partials/movement.hbs" data=data.character.movement}}
+    </div>
+
+    <div class="tab items" data-group="primary" data-tab="spells">
+      {{> "systems/rolemaster/templates/partials/spells.hbs" data=data.character.spells}}
+    </div>
+
+    <div class="tab items" data-group="primary" data-tab="languages">
+      {{> "systems/rolemaster/templates/partials/languages.hbs" data=data.character.languages}}
     </div>
 
     <div class="tab items" data-group="primary" data-tab="primaryskills">
-      <p>Primary</p>
+      {{> "systems/rolemaster/templates/partials/skills.hbs" data=data.character.primarySkills}}
     </div>
 
     <div class="tab items" data-group="primary" data-tab="secondaryskills">
-      <p>Secondary</p>
+      {{> "systems/rolemaster/templates/partials/skills.hbs" data=data.character.secondarySkills}}
+    </div>
+
+    <div class="tab items" data-group="primary" data-tab="topskills">
+      {{> "systems/rolemaster/templates/partials/skills.hbs" data=data.character.topSkills}}
     </div>
 
     <div class="tab items" data-group="primary" data-tab="settings">
-      <div class="resources grid grid-2col">
-        <div class="resource flex-group-center">
-          <label for="data.rmceId" class="resource-label">
-            RMCEID
-          </label>
-          <div class="resource-content flexrow flex-center flex-between">
+
+      <div class="resources grid grid-1col">
+        <div class="resource flex-group-left">
+          <label for="data.rmceId" class="resource-label">RMCEID</label>
+          <div class="resource-content flexrow flex-left flex-between">
             <input type="text" name="data.rmceId" value="{{data.rmceId}}" data-dtype="String" />
           </div>
         </div>
+
       </div>
+
     </div>
 
-    </section>
+  </section>
 </form>
-

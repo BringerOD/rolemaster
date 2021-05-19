@@ -32,6 +32,17 @@ Hooks.once('init', async () => {
   // Preload Handlebars templates
   await preloadTemplates();
 
+  // If you need to add Handlebars helpers, here are a few useful examples:
+  Handlebars.registerHelper('concat', function() {
+    var outStr = '';
+    for (var arg in arguments) {
+      if (typeof arguments[arg] != 'object') {
+        outStr += arguments[arg];
+      }
+    }
+    return outStr;
+  });
+
   // Register custom sheets (if any)
 });
 
